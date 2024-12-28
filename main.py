@@ -1,40 +1,15 @@
-import pandas as pd, geopandas as gpd, streamlit as st
-# ----------------------------------------------------------------------------------------------------------------------
-df1 = pd.read_xml("https://ratings.food.gov.uk/api/open-data-files/FHRS501en-GB.xml",
-                xpath="/FHRSEstablishment/EstablishmentCollection/EstablishmentDetail")
+import pandas as pd, streamlit as st
 
-df2 = pd.read_xml("https://ratings.food.gov.uk/api/open-data-files/FHRS501en-GB.xml",
-                xpath="/FHRSEstablishment/EstablishmentCollection/EstablishmentDetail/Geocode")
+# Function to read the DataFrame from a CSV file
+def read_from_csv(filename="restaurant_data.csv"):
+    df = pd.read_csv(filename)
+    print(f"Data loaded from {filename}")
+    return df
 
-df1 = df1[["BusinessName","BusinessType","PostCode","RatingValue","RatingKey","RatingDate","LocalAuthorityName"]]
+# Read the DataFrame back from the CSV
+df_loaded = read_from_csv("restaurant_data.csv")
 
-pd.set_option('display.max_columns', None)
+# Check the data
+# print(df_loaded)
 
-url = "502"
-for i in range(1,33):
-    df3 = pd.read_xml(f"https://ratings.food.gov.uk/api/open-data-files/FHRS{url}en-GB.xml",
-                      xpath="/FHRSEstablishment/EstablishmentCollection/EstablishmentDetail")
-    df3 = df3[["BusinessName","BusinessType","PostCode","RatingValue","RatingKey","RatingDate","LocalAuthorityName"]]
-    df4 = pd.read_xml(f"https://ratings.food.gov.uk/api/open-data-files/FHRS{url}en-GB.xml",
-                xpath="/FHRSEstablishment/EstablishmentCollection/EstablishmentDetail/Geocode")
-    df1 = pd.concat([df1, df3], axis=0)
-    df2 = pd.concat([df2, df4], axis=0)
-    url = str(int(url) + 1)
-
-df = pd.concat([df1,df2], axis = 1)
-
-df = df.dropna(subset = ["RatingDate","Longitude","Latitude"])
-
-london_boroughs = list(df["LocalAuthorityName"].unique())
-
-df = df[df["BusinessType"].isin(["Restaurant/Cafe/Canteen", "Takeaway/sandwich shop"])]
-
-
-# Function to save the DataFrame to a CSV file
-def save_to_csv(df, filename="restaurant_data.csv"):
-    df.to_csv(filename, index=False)
-    print(f"Data saved to {filename}")
-
-# Save the filtered DataFrame to a CSV
-save_to_csv(df, "restaurant_data.csv")
-
+st.write(df_loaded)
