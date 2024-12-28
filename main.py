@@ -23,4 +23,11 @@ for i in range(1,33):
 
 df = pd.concat([df1,df2], axis = 1)
 
-print(df)
+df = df.dropna(subset = ["RatingDate","Longitude","Latitude"])
+
+london_boroughs = list(df["LocalAuthorityName"].unique())
+
+df = df["BusinessType"].isin(["Restaurant/Cafe/Canteen","Takeaway/sandwich shop"])
+
+
+st.write(df)
