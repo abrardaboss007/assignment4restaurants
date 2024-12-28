@@ -27,7 +27,14 @@ df = df.dropna(subset = ["RatingDate","Longitude","Latitude"])
 
 london_boroughs = list(df["LocalAuthorityName"].unique())
 
-df = df["BusinessType"].isin(["Restaurant/Cafe/Canteen","Takeaway/sandwich shop"])
+df = df[df["BusinessType"].isin(["Restaurant/Cafe/Canteen", "Takeaway/sandwich shop"])]
 
 
-st.write(df)
+# Function to save the DataFrame to a CSV file
+def save_to_csv(df, filename="restaurant_data.csv"):
+    df.to_csv(filename, index=False)
+    print(f"Data saved to {filename}")
+
+# Save the filtered DataFrame to a CSV
+save_to_csv(df, "restaurant_data.csv")
+
