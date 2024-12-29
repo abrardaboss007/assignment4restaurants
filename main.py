@@ -1,5 +1,4 @@
 import pandas as pd, streamlit as st, os
-from api_data import add_image_paths
 # Function to read the DataFrame from a CSV file
 def read_from_csv(filename="restaurant_data.csv"):
     df_loaded = pd.read_csv(filename)
@@ -43,13 +42,19 @@ df_loaded = read_from_csv("restaurant_data.csv")
 image_base_path = "./images/small"  # Local relative path
 df_loaded['FullImagePath'] = df_loaded['ImagePath'].apply(lambda x: image_base_path + x.split('/')[-1])
 
-for _, row in df.iterrows():
-    st.write(f"**{row['BusinessName']}**")
-    st.write(f"Type: {row['BusinessType']}")
-    st.write(f"Rating: {row['RatingValue']}")
-    # Render SVG using HTML
-    png_path = row['ImagePath']
-    st.markdown(f'<img src="{png_path}" alt="Rating" style="width:150px;">', unsafe_allow_html=True)
+# for _, row in df.iterrows():
+#     st.write(f"**{row['BusinessName']}**")
+#     st.write(f"Type: {row['BusinessType']}")
+#     st.write(f"Rating: {row['RatingValue']}")
+#     # Render SVG using HTML
+#     png_path = row['ImagePath']
+#     st.markdown(f'<img src="{png_path}" alt="Rating" style="width:150px;">', unsafe_allow_html=True)
+
+for restaurant in range(len(df)):
+    st.write(f"**Name: {df.loc[restaurant,"BusinessName"]}**")
+    st.write(f"Type: {df.loc[restaurant,"BusinessType"]}")
+    st.write(f"Rating: {df.loc[restaurant,"RatingValue"]}")
+    st.image(os.path.join(r"images\test",f"{df.loc[restaurant,"RatingKey"]}.png"))
 
 edit_button = st.button("Something doesnt look right ? Edit it here", use_container_width=True)
 add_button = st.button("Want to add an establishment? Click here", use_container_width=True)
@@ -63,4 +68,3 @@ if add_button:
 
 if remove_button:
     print("You want to remove my restaurants????")
-    
