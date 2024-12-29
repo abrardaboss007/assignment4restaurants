@@ -51,4 +51,16 @@ for _, row in df.iterrows():
     png_path = row['ImagePath']
     st.markdown(f'<img src="{png_path}" alt="Rating" style="width:150px;">', unsafe_allow_html=True)
 
+edit_button = st.button("Something doesnt look right ? Edit it here", use_container_width=True)
+add_button = st.button("Want to add an establishment? Click here", use_container_width=True)
+remove_button = st.button("Want to remove a restaurant? Click here", use_container_width=True)
 
+if edit_button:
+    print("Fine go on then edit")
+
+if add_button:
+    print("Add a restaurantttt")
+
+if remove_button:
+    print("You want to remove my restaurants????")
+    
