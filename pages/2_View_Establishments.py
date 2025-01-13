@@ -37,8 +37,9 @@ selected_value = st_searchbox(
 if selected_value:
     selected_value_index = df.index.get_loc(df.loc[df['BusinessName'] == f"{selected_value}"].index[0])
     selected_establishment_image_path = os.path.join(r"images\test", f"{df.iloc[selected_value_index]["RatingKey"]}.png")
-    st.write(f"**Establishment name:** {selected_value}")
-    st.image(selected_establishment_image_path, width = 212)
+    with st.container(border = True, height = 300):
+        st.write(f"**Establishment name:** {selected_value}")
+        st.image(selected_establishment_image_path, width = 212)
 # -----------------------------------------------------------------------------------------------------
 # Pagination feature for viewing establishments 
 
@@ -73,9 +74,10 @@ for i, (index, restaurant) in enumerate(current_data.iterrows()):
     
     # Display restaurant info in the selected column
     with col:
-        st.image(image_path, width=100, use_container_width = True)  #
-        st.write(f"**{name}**", unsafe_allow_html=True)  
-        st.write(f"Hygiene Rating: {hygiene_rating}")  
+        with st.container(border=True, height=250):
+            st.image(image_path, width=100, use_container_width = True)  
+            st.write(f"**{name}**", unsafe_allow_html=True)  
+            st.write(f"Hygiene Rating: {hygiene_rating}")  
 
 st.write(f"Displaying page {current_page} of {total_pages}")
 # -----------------------------------------------------------------------------------------------------
