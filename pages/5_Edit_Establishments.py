@@ -62,7 +62,7 @@ if selected_value:
                 latitude = st.text_input("Latitude*", value=selected_establishment["Latitude"])
                 
                 # Image path (this can remain the same, or you can allow the user to upload a new image)
-                image_path = os.path.join("images", "test", f"{establishment_ratingKey}.png")
+                image_path = os.path.join("images/test", f"{establishment_ratingKey}.png")
                 
                 submit_button = st.form_submit_button(label="Update establishment")
                 

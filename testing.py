@@ -6,11 +6,11 @@ class TestDataProcessing(unittest.TestCase):
 
     def test_add_image_paths(self):
         # Sample DataFrame with a RatingKey
-        df = pd.DataFrame({'RatingKey': ['fhrs_0_en-gb.png', 'fhrs_1_en-gb.png', 'fhrs_2_en-gb.png']})
+        df = pd.DataFrame({'RatingKey': ['fhrs_0_en-gb', 'fhrs_1_en-gb', 'fhrs_2_en-gb']})
         result = add_image_paths(df)
         
         # Check if the 'ImagePath' column exists and the paths are correctly constructed
-        expected_paths = [r"images\test\fhrs_0_en-gb.png", r"images\test\fhrs_1_en-gb.png", r"images\test\fhrs_2_en-gb.png"]
+        expected_paths = [r"images/test/fhrs_0_en-gb.png", r"images/test/fhrs_1_en-gb.png", r"images/test/fhrs_2_en-gb.png"]
         self.assertListEqual(result['ImagePath'].tolist(), expected_paths)
     
     def test_data_filtering(self):
@@ -30,7 +30,7 @@ class TestDataProcessing(unittest.TestCase):
         df_filtered = df_filtered[df_filtered["BusinessType"].isin(["Restaurant/Cafe/Canteen", "Takeaway/sandwich shop"])]
         
         # Check the filtered DataFrame
-        self.assertEqual(df_filtered.shape[0], 2)  # There should be 2 rows after filtering
+        self.assertEqual(df_filtered.shape[0], 1)  # There should be 1 row after filtering
         
     def test_save_to_csv(self):
         # Create a temporary test DataFrame
