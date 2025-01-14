@@ -35,7 +35,7 @@ selected_value = st_searchbox(
 #Display the selected value
 if selected_value:
     selected_value_index = df.index.get_loc(df.loc[df['BusinessName'] == f"{selected_value}"].index[0])
-    selected_establishment_image_path = os.path.join(r"images\test", f"{df.iloc[selected_value_index]["RatingKey"]}.png")
+    selected_establishment_image_path = os.path.join(r"images/test", f"{df.iloc[selected_value_index]["RatingKey"]}.png")
     with st.container(border = True, height = 300):
         st.write(f"**Establishment name:** {selected_value}")
         st.image(selected_establishment_image_path, width = 212)

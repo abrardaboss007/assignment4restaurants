@@ -23,14 +23,14 @@ for i in range(1,33):
 
 df = pd.concat([df1,df2], axis = 1)
 
-df = df.dropna(subset = ["Postcode","RatingDate","Longitude","Latitude"])
+df = df.dropna(subset = ["PostCode","RatingDate","Longitude","Latitude"])
 df = df[df["BusinessType"].isin(["Restaurant/Cafe/Canteen", "Takeaway/sandwich shop"])]
 pd.set_option('display.max_columns', None)
 
 london_boroughs = list(df["LocalAuthorityName"].unique())
 # -----------------------------------------------------------------------------------------------------
 # Function to add image paths based on RatingKey
-def add_image_paths(df, image_folder= r"images\test"):
+def add_image_paths(df, image_folder= r"images/test"):
     df["ImagePath"] = df["RatingKey"].apply(lambda key: os.path.join(image_folder, f"{key}.png"))
     return df
 # -----------------------------------------------------------------------------------------------------

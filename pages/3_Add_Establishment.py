@@ -39,7 +39,7 @@ with st.form(key = "Add", clear_on_submit=True, enter_to_submit=False, border=Tr
     establishment_borough = st.selectbox(label="Borough Name*", options=london_boroughs)
     longitude = st.text_input(label = "Longitude*")
     latitude = st.text_input(label = "Latitude*")
-    image_path = os.path.join(r"images\test", f"\{establishment_ratingKey}.png")
+    image_path = os.path.join(r"images/test", f"/{establishment_ratingKey}.png")
     #image_path = 
     submit_button = st.form_submit_button(label="Add establishment")
     if submit_button:

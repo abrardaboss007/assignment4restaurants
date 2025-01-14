@@ -96,7 +96,7 @@ selected_value = st_searchbox(
 # Display the selected value
 if selected_value:
     selected_value_index = df.index.get_loc(df.loc[df['BusinessName'] == f"{selected_value}"].index[0])
-    selected_establishment_image_path = os.path.join(r"images\test", f"{df.iloc[selected_value_index]['RatingKey']}.png")
+    selected_establishment_image_path = os.path.join(r"images/test", f"{df.iloc[selected_value_index]['RatingKey']}.png")
     with st.container(border=True, height=300):
         st.write(f"**Establishment name:** {selected_value}")
         st.image(selected_establishment_image_path, width=212)
@@ -133,7 +133,7 @@ for i, (index, restaurant) in enumerate(current_data.iterrows()):
     col = columns[i % columns_per_page]  # Cycle through columns
     name = restaurant['BusinessName']
     hygiene_rating = restaurant['RatingValue']
-    image_path = os.path.join(r"images\test", f"{restaurant['RatingKey']}.png")
+    image_path = os.path.join(r"images/test", f"{restaurant['RatingKey']}.png")
     
     with col:
         with st.container(border=True, height=250):

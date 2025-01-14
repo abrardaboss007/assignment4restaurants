@@ -40,7 +40,7 @@ if selected_value:
     # Get the current data of the selected establishment
     selected_establishment = df.iloc[selected_value_index]
     
-    selected_establishment_image_path = os.path.join("images", "test", f"{selected_establishment['RatingKey']}.png")
+    selected_establishment_image_path = os.path.join(r"images/test", f"{selected_establishment['RatingKey']}.png")
     
     with st.container():
         st.write(f"**Establishment name:** {selected_value}")
