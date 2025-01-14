@@ -23,7 +23,7 @@ for i in range(1,33):
 
 df = pd.concat([df1,df2], axis = 1)
 
-df = df.dropna(subset = ["RatingDate","Longitude","Latitude"])
+df = df.dropna(subset = ["Postcode","RatingDate","Longitude","Latitude"])
 df = df[df["BusinessType"].isin(["Restaurant/Cafe/Canteen", "Takeaway/sandwich shop"])]
 pd.set_option('display.max_columns', None)
 
