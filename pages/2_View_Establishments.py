@@ -4,7 +4,7 @@ import os
 from streamlit_searchbox import st_searchbox
 # -----------------------------------------------------------------------------------------------------
 # Function to read the DataFrame from a CSV file
-@st.cache_data
+
 def read_from_csv(filename="restaurant_data.csv"):
     df_loaded = pd.read_csv(filename)
     print(f"Data loaded from {filename}")
