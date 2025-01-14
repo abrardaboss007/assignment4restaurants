@@ -50,7 +50,7 @@ if selected_value:
         
         if edit_button:
             # Pre-fill the form fields with the current data
-            with st.form(key="Edit", clear_on_submit=True, enter_to_submit=False):
+            with st.form(key="Edit", clear_on_submit=False, enter_to_submit=False):
                 establishment_name = st.text_input("Establishment Name*", value=selected_establishment["BusinessName"])
                 establishment_type = st.selectbox("Establishment Type*", options=["Restaurant/Cafe/Canteen", "Takeaway/sandwich shop"], index=["Restaurant/Cafe/Canteen", "Takeaway/sandwich shop"].index(selected_establishment["BusinessType"]))
                 establishment_postcode = st.text_input("Postcode (e.g. E12 5AD)*", value=selected_establishment["PostCode"])
